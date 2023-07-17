@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  mongodb:
+    container_name: database
+    image: 'mongo:latest'
+    hostname: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./bin/dev/mongodb:/data/db
+  mongo-seed:
+    container_name: migrator
+    build: ./mongo-seed
+    depends_on:
+      - mongodb
+  api:
+    container_name: api
+    build: .
+    ports:
+      - 8083:8083
+    command: ./bin/backend-test-golang
+    env_file:
+      - .env
+    depends_on:
+      - mongodb

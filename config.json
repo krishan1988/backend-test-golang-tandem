@@ -1,0 +1,10 @@
+{
+    "server": {
+        "port": 8083,
+        "publicKeyPath": "/tmp/public.key"
+    },
+    "db": {
+        "uri": "mongodb://mongodb:27017",
+        "name": "btg-db"
+    }
+}
